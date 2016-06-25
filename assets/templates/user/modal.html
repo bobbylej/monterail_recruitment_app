@@ -1,0 +1,118 @@
+<h4 class="icon loguot" id="user-logout" ng-click="logout()">Logout</h4>
+<span class="icon icon-cancel close-button" id="user-modal-close" ng-click="closeModal()"></span>
+<div class="header">
+  <div class="inner">
+    <img ng-src="{{ $root.userModal.avatar ? $root.userModal.avatar : $root.defaultAvatar }}" alt="{{ $root.userModal.name }}" class="avatar"/>
+    <h2>{{ $root.userModal.name }}</h2>
+    <div class="main-info-container">
+      <div class="main-info member">
+        <h4 class="meta">Member for</h4>
+        <p class="info">{{ dateDifference($root.userModal.createdAt).value }} {{ dateDifference($root.userModal.createdAt).meta }}</p>
+      </div>
+      <div class="main-info last-seen">
+        <h4 class="meta">Last seen</h4>
+        <p class="info">{{ $root.userModal.isLogged ? 'Now online' : (dateDifference($root.userModal.lastSeen).value + ' ' + dateDifference($root.userModal.lastSeen).meta) }}</p>
+      </div>
+      <div class="main-info activity">
+        <h4 class="meta">Activity level</h4>
+        <div class="info activity-level {{ $root.userModal.activityLevel }}">
+          <span class="level icon"></span>
+          <span class="level icon"></span>
+          <span class="level icon"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-content">
+  <div class="inner">
+    <div class="arrows">
+      <span class="arrow full back icon icon-left-open-big" id="modal-arrow-prev" ng-click="prevContent()"></span>
+      <span class="arrow full next active icon icon-right-open-big" id="modal-arrow-next" ng-click="nextContent()"></span>
+    </div>
+  </div>
+  <div class="how-started">
+    <h1 class="content-title">How it all started</h1>
+    <div class="component blocks">
+      <div class="inner">
+        <h4>That's where we have been these {{ dateDifference($root.userModal.createdAt).value }} {{ dateDifference($root.userModal.createdAt).meta }} ago</h4>
+        <div class="block">
+          <div class="text">
+            <span class="amount">{{ $root.userModal.info.peers.length  }}</span>
+            <span class="meta">peers</span>
+          </div>
+        </div>
+        <div class="block">
+          <div class="text">
+            <span class="amount">{{ $root.userModal.info.discussion }}</span>
+            <span class="meta">discussion</span>
+          </div>
+        </div>
+        <div class="block">
+          <div class="text">
+            <span class="amount">{{ $root.userModal.info.findings }}</span>
+            <span class="meta">findings</span>
+          </div>
+        </div>
+        <div class="block">
+          <div class="text">
+            <span class="amount">{{ $root.userModal.info.questions }}</span>
+            <span class="meta">questions</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="component same-period" ng-if="$root.userModal.usersInPeriod.length">
+      <div class="inner">
+        <h4>Who joined the platform that same period</h4>
+        <div class="user" ng-repeat="userInPeriod in $root.userModal.usersInPeriod">
+          <div class="avatar-container">
+            <img ng-src="{{ userInPeriod.avatar ? userInPeriod.avatar : $root.defaultAvatar }}" alt="{{ userInPeriod.name }}" class="avatar"/>
+          </div>
+          <h1 class="username">{{ userInPeriod.name }}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="component hottest" ng-if="$root.userModal.hottestAnswer">
+      <h4>The hottest discussion these days</h4>
+      <div class="hottest-question">
+        <div class="inner">
+          <img ng-src="{{ $root.userModal.hottestAnswer.user.avatar ? $root.userModal.hottestAnswer.user.avatar : $root.defaultAvatar }}" alt="{{ $root.userModal.hottestAnswer.user.name }}" class="avatar"/>
+          <div class="header-content">
+            <h2 class="username">{{ $root.userModal.hottestAnswer.user.name }}</h2>
+            <h4 class="action-name">
+              Found the guardian article
+            </h4>
+            <h1 class="question-name"><a ng-click="openQuestion($root.userModal.hottestAnswer.question)">{{ $root.userModal.hottestAnswer.question.name }}</a></h1>
+          </div>
+          <div class="info-container">
+            <div class="info">
+              <p>
+                <span class="amount">{{ $root.userModal.info.peers.length }}</span>
+                peers involved
+              </p>
+            </div>
+            <div class="info">
+              <p>
+                <span class="amount">{{ $root.userModal.info.discussion }}</span>
+                related discussion
+              </p>
+            </div>
+            <div class="info">
+              <p>
+                <span class="amount">{{ $root.userModal.info.discussion }}</span>
+                conversations
+              </p>
+            </div>
+            <div class="info">
+              <p>
+                <span class="amount">{{ voteDiff($root.userModal.hottestAnswer) > 0 ? voteDiff($root.userModal.hottestAnswer) : voteDiff($root.userModal.hottestAnswer)*(-1) }}</span>
+                {{ voteDiff($root.userModal.hottestAnswer) > 0 ? 'upvotes' : (voteDiff($root.userModal.hottestAnswer) < 0 ? 'downvotes' : 'votes') }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

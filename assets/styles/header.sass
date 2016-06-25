@@ -1,0 +1,96 @@
+.navbar
+  position: fixed
+  background: $navbar_bg
+  width: 100%
+  z-index: 99
+  top: 0
+  left: 0
+  box-sizing: border-box
+
+  .navbar-inner
+    position: relative
+    max-width: $container_width
+    width: 100%
+    margin: auto
+
+  #navbar-arrow-back
+    position: absolute
+    left: 28px
+    top: 50%
+    transform: translateY(-50%)
+
+  .navbar-top
+    width: 100%
+    display: table
+
+    &.single
+      padding-bottom: 26px
+
+  .question-navbar
+    padding: 46px 0 20px
+    box-sizing: border-box
+
+    div:not(.question-search-container)
+      vertical-align: bottom
+
+    .question-create-container
+      display: inline-block
+
+      h1
+        display: inline
+        margin: 0
+        text-transform: uppercase
+        font-size: 28px
+        letter-spacing: 1px
+        color: $font_color
+
+      .create-question
+        font-size: 30px
+        color: $main_color
+        margin-left: 15px
+
+    .question-navbar-right
+      display: table-cell
+      text-align: right
+      font-size: 14px
+      letter-spacing: 0.5px
+
+      div
+        display: inline-block
+
+      .question-types-container
+
+        .input-radio
+          margin-right: 25px
+
+      .question-sort-container
+        margin-left: 50px
+        font-style: italic
+
+        .sort
+          font-size: 15px
+          font-weight: bold
+          font-style: normal
+          margin: 0 6px
+          cursor: pointer
+
+          &:last-child
+            margin-right: 0
+
+    .question-search-container
+      width: 100%
+      font-size: 0
+      margin-top: 20px
+
+      .input-container, .input
+        display: inline-block
+        width: 100%
+        max-width: calc(100% - 180px - 20px)
+        margin-right: 20px
+        box-sizing: border-box
+
+        .input
+          width: 100%
+          max-width: auto
+          margin: 0
+          box-sizing: border-box

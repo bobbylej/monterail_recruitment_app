@@ -1,0 +1,82 @@
+.answer
+  box-shadow: 3px -3px 3px #eee
+
+.comment
+  border-top: 1px solid #eee
+
+.answer, .comment
+  max-width: $question_width
+  margin: auto
+  margin-bottom: 40px
+  font-size: 0
+  position: relative
+
+  &.have-comments
+    .main
+      .answer-content, .comment-content
+        padding-bottom: 18px
+
+    .comment:last-child
+      .main
+        .comment-content
+          padding-bottom: 40px
+
+  .main
+    background-color: $content_bg
+
+  .avatar
+    display: inline-block
+    margin: 20px
+
+  .answer-content, .comment-content
+    display: inline-block
+    padding: 18px 12px
+    padding-bottom: 40px
+    vertical-align: top
+    border-left: $question_border
+    width: calc(100% - 90px)
+    box-sizing: border-box
+
+  .header-content
+    vertical-align: top
+
+    .username
+      display: inline-block
+      color: $main_color
+      font-size: 15px
+      margin: 0
+      margin-right: 6px
+
+    .action-name
+      display: inline-block
+      font-size: 12px
+
+    .action-date
+      position: relative
+      display: inline-block
+      color: $font_color
+      font-size: 13px
+      font-style: italic
+      text-transform: lowercase
+      margin: 0
+      margin-left: 8px
+      padding-left: 14px
+
+      &::before
+        content: ''
+        position: absolute
+        top: 6px
+        left: 0
+        display: inline-block
+        width: 3px
+        height: 3px
+        border-radius: 2px
+        background-color: $second_color
+
+  .content
+    border: 0
+    padding: 0
+    margin-top: 20px
+
+  .comments-container
+    margin-left: 90px

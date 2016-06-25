@@ -1,0 +1,72 @@
+<div class="main">
+  <div class="header">
+    <img ng-src="{{ question.user.avatar ? question.user.avatar : $root.defaultAvatar }}" alt="{{ question.user.name }}" class="avatar" ng-click="$root.openUserModal(question.user)"/>
+    <div class="header-content">
+      <h2 class="username" ng-click="$root.openUserModal(question.user)">{{ question.user.name }}</h2>
+      <h4 class="action-name">
+        Is asking:
+      </h4>
+      <h1 class="question-name"><a ng-click="openQuestion(question)">{{ question.name }}</a></h1>
+    </div>
+  </div>
+  <div class="activities">
+    <div class="user-activity activity">
+      <h4 class="type">
+        asked
+      </h4>
+    </div>
+    <div class="another-activity" ng-init="activities = getActivities(question, activitiesSize)">
+      {{ activitiesSize }}
+      <div class="activity more mobile-show" ng-if="getActivities(question, activitiesSize).more">
+        <div class="activity-head">
+          <h3>{{ getActivities(question, activitiesSize).more }}</h3>
+        </div>
+        <p class="type">
+          more activities
+        </p>
+      </div>
+      <div class="activity {{ activity.type }} {{ $last ? 'mobile-show' : '' }}" ng-repeat="activity in getActivities(question, activitiesSize).list | orderBy: 'type' : true">
+        <div class="activity-head">
+          <img ng-src="{{ activity.user.avatar ? activity.user.avatar : $root.defaultAvatar }}" alt="{{ activity.user.name }}" class="avatar" ng-click="$root.openUserModal(activity.user)"/>
+        </div>
+        <h4 class="type">
+          {{ activity.type + 'ed' }}
+        </h4>
+      </div>
+      <!--
+      <div class="activity" ng-repeat="answer in question.answers">
+        {{ answer.content }}<button type="button" name="button" ng-click="createComment(answer)">+Comment</button>
+        <div class="activity" ng-repeat="comment in answer.comments">
+          {{ comment.content }}
+        </div>
+      </div>
+    -->
+    </div>
+    <div class="right">
+      <div class="info-container">
+        <div class="info">
+          <p><span class="amount">{{ question.info.discussion }}</span> related discussion</p>
+        </div>
+        <div class="info">
+          <p><span class="amount">{{ question.info.peers.length }}</span> peers involved</p>
+        </div>
+        <div class="info">
+          <p><span class="amount">{{ question.info.conversations }}</span> conversations</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="right">
+  <div class="info-container">
+    <div class="info">
+      <p><span class="amount">{{ question.info.discussion }}</span> related discussion</p>
+    </div>
+    <div class="info">
+      <p><span class="amount">{{ question.info.peers.length }}</span> peers involved</p>
+    </div>
+    <div class="info">
+      <p><span class="amount">{{ question.info.conversations }}</span> conversations</p>
+    </div>
+  </div>
+</div>

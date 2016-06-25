@@ -1,0 +1,70 @@
+input[type="submit"]
+  cursor: pointer
+
+input.cuprum, textarea.cuprum
+  font-family: $font
+
+input.cuprum, textarea.cuprum
+  +placeholder
+    font-family: $font
+    font-weight: normal
+    font-size: 15px
+
+
+.input-container
+  position: relative
+
+  label
+    position: absolute
+    top: 9px
+    left: 9px
+    font-size: $input_font_size
+    color: $input_color
+    cursor: text
+
+    &.invisible
+      display: none
+
+input.input, textarea.input
+  padding: 8px
+  background: $input_bg
+  color: $input_color
+  border: $input_border
+  font-size: $input_font_size
+
+.input-radio
+  display: inline-block
+
+  input[type='radio']
+    position: absolute
+    visibility: hidden
+
+    &:checked ~ .radio::before
+      display: block
+
+  label
+    font-size: 15px
+    font-weight: bold
+
+  .radio
+    width: $radio_size
+    height: $radio_size
+    display: inline-block
+    border: $radio_border
+    border-radius: $radio_size/2
+    background: $radio_bg
+    position: relative
+    cursor: pointer
+    margin-right: 10px
+
+    &::before
+      content: ''
+      display: none
+      width: $radio_size/2
+      height: $radio_size/2
+      border: $radio_dot_border
+      border-radius: $radio_size/4
+      box-sizing: border-box
+      position: absolute
+      top: $radio_size/4
+      left: $radio_size/4

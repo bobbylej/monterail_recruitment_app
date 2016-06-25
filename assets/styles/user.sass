@@ -1,0 +1,299 @@
+.avatar
+  width: $avatar_size
+  border-radius: $avatar_size/2
+  cursor: pointer
+
+.username
+  cursor: pointer
+
+  &:hover
+    color: $second_color
+    border-bottom: 1px solid $second_color
+
+#user-logout
+  position: absolute
+  right: 45px
+  top: 15px
+
+  &:hover
+    color: $main_color
+
+.modal-user
+  position: fixed
+  max-width: $user_modal_width
+  width: 100%
+  max-height: 80%
+  overflow: auto
+  left: 50%
+  top: -100%
+  transform: translate(-50%, -50%)
+  background-color: $user_modal_bg
+
+  .inner
+    max-width: $user_modal_inner_width
+    width: 100%
+    margin: auto
+    padding: 0
+    box-sizing: border-box
+
+  .header
+    .avatar
+      width: $avatar_size2
+      border-radius: $avatar_size2/2
+      display: block
+      margin: auto
+      margin-top: 50px
+
+    h2
+      display: block
+      margin: 15px auto 8px
+      font-size: 20px
+      text-align: center
+      color: $main_color
+
+    .main-info-container
+      width: 100%
+      font-size: 0
+      padding-bottom: 28px
+      border-bottom: 1px solid $second_color
+
+      div, p
+        display: inline-block
+        margin: 0
+
+      .main-info
+        width: 33%
+        font-size: 15px
+        text-align: center
+        padding: 0 5px
+        box-sizing: border-box
+
+        &:first-child
+          text-align: left
+          margin-right: 0.5%
+          padding-left: 0
+
+        &:last-child
+          text-align: right
+          margin-left: 0.5%
+          padding-right: 0
+
+        .meta
+          display: inline-block
+          font-size: 14px
+          letter-spacing: 1px
+          margin-right: 5px
+
+        .info
+          color: $font_color
+
+        .activity-level
+          margin: 0
+
+          .level
+            display: inline-block
+            background-image: url('/images/level-disable.png')
+            background-repeat: no-repeat
+            background-size: contain
+            width: 20px
+            height: 28px
+            margin: auto 2px -10px
+            cursor: default
+
+            &.active
+              background-image: url('/images/level.png')
+
+  .modal-content
+    .inner
+      position: relative
+
+    .arrows
+      width: 100%
+      position: absolute
+      top: 8px
+      left: 0
+
+      .arrow
+        display: inline-block
+        width: 30px
+        height: 30px
+        font-size: 17px
+
+        &.back::before
+          margin-left: .3em
+
+        &.next::before
+          margin-left: .4em
+
+      #modal-arrow-prev
+        float: left
+
+      #modal-arrow-next
+        float: right
+
+    h1.content-title
+      font-size: 40px
+      text-align: center
+      font-style: italic
+      font-weight: normal
+      letter-spacing: 2px
+      color: $font_color
+      margin: 14px auto 35px
+      max-width: $user_modal_inner_width
+      width: 100%
+      padding: 0 40px
+      box-sizing: border-box
+
+    h4
+      text-align: center
+
+    .component
+      margin: 40px auto
+      text-align: center
+
+      &:first-child
+        margin-top: 0
+
+      &:last-child
+        margin-bottom: 25px
+
+      h4
+        margin-bottom: 20px
+
+    .blocks
+      margin-top: 0 !important
+
+    .block
+      position: relative
+      display: inline-block
+      width: $block_size
+      height: $block_size
+      margin: 24px 9px 0
+
+      &::before
+        content: ''
+        position: absolute
+        width: $block_size
+        height: $block_size
+        top: 0
+        left: 50%
+        margin-left: -$block_size/2
+        background-color: $question_bg
+        opacity: 0.8
+
+      &:nth-child(4n+1)::before
+        transform: rotate(11deg)
+
+      &:nth-child(4n+2)::before
+        transform: rotate(53deg)
+
+      &:nth-child(4n+3)::before
+        transform: rotate(-11deg)
+
+      &:nth-child(4n+4)::before
+        transform: rotate(-33deg)
+
+      .text
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        color: $font_color
+        text-align: center
+
+        .amount
+          display: block
+          font-size: 24px
+          font-weight: bold
+          text-align: center
+
+        .meta
+          display: block
+          font-size: 15px
+          font-weight: bold
+          font-style: italic
+          text-align: center
+          margin-top: 10px
+
+    .same-period
+      margin-top: 55px
+
+      .user
+        display: inline-block
+        margin: 0 10px
+        vertical-align: top
+
+        .avatar-container
+          display: table
+          margin: auto
+          background-image: url('/images/bg.jpg')
+
+          .avatar
+            margin: 20px
+
+        .username
+          font-size: 16px
+          font-style: normal
+          font-weight: bold
+          text-align: center
+          letter-spacing: .5px
+          color: $main_color
+          width: 90px
+          margin: 5px auto
+
+    .hottest
+      .hottest-question
+        margin-top: 50px
+        background-image: url('/images/bg.jpg')
+
+        .avatar
+          margin-top: -$avatar_size/2
+
+      .header-content
+        margin: 12px auto
+        text-align: center
+
+        .username
+          display: inline-block
+          margin: 0
+          margin-right: 6px
+
+        .action-name
+          display: inline-block
+          margin: 0
+          font-size: 13px
+
+        .question-name
+          font-size: 20px
+          font-weight: bold
+          letter-spacing: normal
+          margin: 3px auto
+
+      .info-container
+        margin: 30px auto 0
+        padding-bottom: 30px
+
+        .info
+          display: inline-block
+          margin: auto 7px
+
+          p
+            margin: 0
+
+          .amount
+            font-size: 17px
+
+.login-container, .signup-container
+  max-width: $user_modal_inner_width
+  width: 100%
+  margin: 30px auto
+  text-align: center
+
+  form
+    display: table
+    margin: auto
+    text-align: center
+
+    input
+      display: block
+      margin: 5px auto

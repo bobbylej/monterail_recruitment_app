@@ -1,0 +1,27 @@
+<div class="main">
+  <img ng-src="{{ comment.user.avatar ? comment.user.avatar : $root.defaultAvatar }}" alt="{{ comment.user.name }}" class="avatar" ng-click="$root.openUserModal(comment.user)"/>
+  <div class="comment-content">
+    <div class="header-content">
+      <h2 class="username" ng-click="$root.openUserModal(question.user)">{{ comment.user.name }}</h2>
+      <h4 class="action-name">
+        Commented it
+      </h4>
+      <p class="action-date">
+        {{ dateDiff(comment.createdAt).value }} {{ dateDiff(comment.createdAt).meta }}
+      </p>
+    </div>
+    <div class="content">
+      <div class="text">
+        {{ comment.content }}
+      </div>
+      <div class="votes {{ wasUserVote(comment, 'comment') ? 'disactive' : '' }}">
+        <span class="vote">{{ voteDiff(comment) > 0 ? voteDiff(comment) : voteDiff(comment)*(-1) }}</span>
+        <span class="vote-direction">{{ voteDiff(comment) > 0 ? 'upvotes' : (voteDiff(comment) < 0 ? 'downvotes' : 'votes') }}</span>
+        <div class="votes-arrows">
+          <span class="vote-arrow up icon-up-dir" ng-click="voteComment(comment, '+')"></span>
+          <span class="vote-arrow down icon-down-dir" ng-click="voteComment(comment, '-')"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="navbar-top">
+  <div class="question-create-container">
+    <h1 class="page-title">Questions</h1>
+    <span class="create-question icon icon-plus-circled" id="create-question" ng-click="openQuestionModal()"></span>
+  </div>
+  <div class="question-navbar-right">
+    <div class="question-types-container">
+      <input type="radio" class="radio-button" name="questions-type" value="my" id="questions-type1" ng-model="type" ng-change="changeQuestionsType('my')">
+      <label for="questions-type1">My shelf</label>
+      <input type="radio" class="radio-button" name="questions-type" value="all" id="questions-type0" ng-model="type" ng-change="changeQuestionsType('all')">
+      <label for="questions-type0">All questions</label>
+    </div>
+    <div class="question-sort-container">
+      <span>Sort by:</span>
+      {{ $root.questionsSort }}
+      <a class="sort {{ $root.sort == 'recent' ? 'active' : '' }}" ng-click="changeQuestionsSort('recent')">recent</a>
+      <span>or</span>
+      <a class="sort {{ $root.sort == 'hot' ? 'active' : '' }}" ng-click="changeQuestionsSort('hot')">hot</a>
+    </div>
+  </div>
+</div>
+<div class="question-search-container">
+  <form class="" ng-submit="changeSearch(questionSearch)">
+    <input type="text" class="input cuprum" name="name" value="" placeholder="Search questions" id="question-search" ng-model="questionSearch">
+    <input type="submit" class="button-second cuprum" name="name" value="SEARCH">
+  </form>
+</div>

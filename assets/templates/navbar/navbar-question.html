@@ -1,0 +1,14 @@
+<div class="navbar-top single">
+  <div class="question-create-container">
+    <h1 class="page-title">Question</h1>
+    <span class="create-question icon icon-plus-circled" id="create-question" ng-click="openQuestionModal()"></span>
+  </div>
+  <div class="question-navbar-right">
+    <div class="question-info-container" ng-if="lastTime">
+      <span>Last time discussed</span>
+      <span>{{ lastTime.value }}</span>
+      <span>{{ lastTime.meta }}</span>
+      <span>ago</span>
+    </div>
+  </div>
+</div>

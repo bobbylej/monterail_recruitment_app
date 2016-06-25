@@ -1,0 +1,29 @@
+<span class="icon icon-cancel close-button" id="user-close-button"></span>
+<div ng-if="$root.user">
+  <img ng-src="{{ $root.user.avatar ? $root.user.avatar : defaultAvatar }}" alt="{{ $root.user.name }}" class="avatar"/>
+  <h1 id="main-title">{{ $root.user.name }}</h1>
+  <button ng-click="logout()" class="btn">Logout</button>
+</div>
+<div ng-show="!$root.user">
+  <div class="login-container">
+    <h1>Login</h1>
+    <form ng-submit="loginLocal()" name="login_form">
+      <input ng-model="loginForm.name" type="text" placeholder="Name" name="name" class="cuprum input" required>
+      <input ng-model="loginForm.password" type="password" placeholder="Password" name="password" class="cuprum input" required>
+      <input type="submit" value="Login" class="button-second cuprum" ng-disabled="login_form.$invalid">
+      <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+    </form>
+    <a title="login by facebook" ng-click="loginFacebook()" class="facebook"></a>
+  </div>
+  <div class="signup-container">
+    <h1>Signup</h1>
+    <form ng-submit="signup()" name="signup_form">
+      <input ng-model="signupForm.name" type="text" placeholder="Name" name="name" class="cuprum input" required>
+      <input ng-model="signupForm.password" type="password" placeholder="Password" name="password" class="cuprum input" required>
+      <input type="submit" value="Signup" class="button-second cuprum" ng-disabled="signup_form.$invalid">
+      <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+    </form>
+  </div>
+
+  {{ error }}
+</div>

@@ -1,0 +1,10 @@
+<div class="question-container">
+  <div class="question" ng-repeat="question in $root.questions">
+    <div class="" ng-include="'/templates/question/list-single.html'">
+
+    </div>
+  </div>
+</div>
+<div class="load-more" ng-if="$root.questionsAmount > $root.questions.length">
+  <a ng-click="loadMore()">load more questions</a>
+</div>

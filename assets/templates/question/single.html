@@ -1,0 +1,42 @@
+<div class="question-container">
+  <div class="question single">
+    <div class="header">
+      <img ng-src="{{ $root.question.user.avatar ? $root.question.user.avatar : $root.defaultAvatar }}" alt="{{ $root.question.user.name }}" class="avatar" ng-click="$root.openUserModal(question.user)"/>
+      <div class="header-content">
+        <h2 class="username" ng-click="$root.openUserModal(question.user)">{{ $root.question.user.name }}</h2>
+        <h4 class="action-name">
+          Is asking:
+        </h4>
+        <h1 class="question-name">{{ $root.question.name }}</h1>
+      </div>
+    </div>
+    <div class="header mobile-show">
+      <h1 class="question-name">{{ $root.question.name }}</h1>
+    </div>
+    <div class="content">
+      <div class="text">
+        {{ $root.question.content }}
+      </div>
+      <div class="follow-container mobile-show">
+        <a href="#" class="follow">unfollow</a>
+      </div>
+      <div class="votes {{ wasUserVote($root.question, 'question') ? 'disactive' : '' }}">
+        <span class="vote">{{ voteDiff($root.question) > 0 ? voteDiff($root.question) : voteDiff($root.question)*(-1) }}</span>
+        <span class="vote-direction">{{ voteDiff($root.question) > 0 ? 'upvotes' : (voteDiff($root.question) < 0 ? 'downvotes' : 'votes') }}</span>
+        <div class="votes-arrows">
+          <span class="vote-arrow up icon-up-dir" ng-click="voteQuestion('+')"></span>
+          <span class="vote-arrow down icon-down-dir" ng-click="voteQuestion('-')"></span>
+        </div>
+      </div>
+      <button type="button" class="button" name="createAnswer" ng-click="createAnswer()">GIVE new answer</button>
+    </div>
+  </div>
+</div>
+<div class="answers-container">
+  <h3 class="peers"><span class="amount">{{ $root.question.info.peersAnswered.length }}</span> peers already answered {{ $root.question.user.name }}</h3>
+  <div class="answer {{ answer.comments.length ? 'have-comments' : '' }}" ng-repeat="answer in $root.question.answers">
+    <div class="" ng-include="'/templates/answer/list-single.html'">
+
+    </div>
+  </div>
+</div>

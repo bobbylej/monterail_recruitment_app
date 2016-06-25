@@ -1,0 +1,23 @@
+<div class="container" ng-app="WebModule">
+  <nav class="navbar" id="navbar">
+    <div id="modal-blanket"></div>
+    <div class="navbar-inner">
+      <div ng-controller="AuthController">
+        <div class="user-navbar modal-user inner modal">
+          <%- include login %>
+        </div>
+      </div>
+      <div ng-controller="NavbarController">
+        <span class="arrow back icon icon-left-open-big" id="navbar-arrow-back" ng-click="backClick()"></span>
+        <div class="question-navbar inner" ng-include="$root.navbarUrl">
+        </div>
+        <div class="modal modal-user" id="modal-question" ng-include="'/templates/question/modal.html'"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="inner" id="content">
+    <div ng-view></div>
+  </div>
+  <div class="modal modal-user" id="modal-user" ng-controller="UserController" ng-include="'/templates/user/modal.html'"></div>
+</div>

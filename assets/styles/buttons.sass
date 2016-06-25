@@ -1,0 +1,51 @@
+.button
+  background: $button_bg
+  border: $button_border
+  color: $font_color
+  font-size: $button_font_size
+  font-weight: bold
+  letter-spacing: -0.1px
+  padding: 6px
+  max-width: 180px
+  width: 100%
+  box-sizing: border-box
+  transition: .5s all
+  cursor: pointer
+  outline: none
+
+  &:hover, &:focus
+    background: $font_color
+    color: $button_bg
+    border-color: $font_color
+    outline: none
+
+
+.button-second
+  background: $button_bg
+  border: $button_second_border
+  color: $button_color
+  font-size: $button_font_size
+  font-weight: bold
+  text-transform: uppercase
+  letter-spacing: 1px
+  padding: 8px
+  max-width: 180px
+  width: 100%
+  box-sizing: border-box
+  transition: .5s all
+  cursor: pointer
+
+  &:hover
+    background: $button_color
+    color: $button_bg
+
+.facebook
+  background-image: url('https://www.facebook.com/images/fb_icon_325x325.png')
+  background-size: contain
+  background-repeat: no-repeat
+  width: 30px
+  height: 30px
+  display: inline-block
+
+  &:hover
+    border: 0

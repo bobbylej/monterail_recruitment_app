@@ -1,0 +1,18 @@
+<span class="icon icon-cancel close-button" id="user-modal-close" ng-click="closeModal()"></span>
+<div class="header">
+  <div class="inner">
+    <img ng-src="{{ $root.user.avatar ? $root.user.avatar : $root.defaultAvatar }}" alt="{{ $root.user.name }}" class="avatar"/>
+    <h2>{{ $root.user.name }}</h2>
+  </div>
+</div>
+<div class="modal-content">
+  <div class="inner">
+    <h4>Please fill this fields to create question</h4>
+    <form ng-submit="createQuestion(question)" name="questionForm">
+      <input ng-model="question.name" type="text" placeholder="Name" name="name" class="cuprum input" required>
+      <textarea ng-model="question.content" placeholder="Content" name="content" class="cuprum input" required></textarea>
+      <input type="submit" value="Create" class="button-second cuprum" ng-disabled="questionForm.$invalid">
+      <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+    </form>
+  </div>
+</div>

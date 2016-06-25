@@ -1,0 +1,35 @@
+<div class="main">
+  <img ng-src="{{ answer.user.avatar ? answer.user.avatar : $root.defaultAvatar }}" alt="{{ answer.user.name }}" class="avatar" ng-click="$root.openUserModal(answer.user)"/>
+  <div class="answer-content">
+    <div class="header-content">
+      <h2 class="username" ng-click="$root.openUserModal(question.user)">{{ answer.user.name }}</h2>
+      <h4 class="action-name">
+        Commented it
+      </h4>
+      <p class="action-date">
+        {{ dateDiff(answer.createdAt).value }} {{ dateDiff(answer.createdAt).meta }}
+      </p>
+    </div>
+    <div class="content">
+      <div class="text">
+        {{ answer.content }}
+      </div>
+      <div class="votes {{ wasUserVote(answer, 'answer') ? 'disactive' : 'active' }}">
+        <span class="vote">{{ voteDiff(answer) > 0 ? voteDiff(answer) : voteDiff(answer)*(-1) }}</span>
+        <span class="vote-direction">{{ voteDiff(answer) > 0 ? 'upvotes' : (voteDiff(answer) < 0 ? 'downvotes' : 'votes') }}</span>
+        <div class="votes-arrows">
+          <span class="vote-arrow up icon-up-dir" ng-click="voteAnswer(answer, '+')"></span>
+          <span class="vote-arrow down icon-down-dir" ng-click="voteAnswer(answer, '-')"></span>
+        </div>
+      </div>
+      <button type="button" class="button" name="createComment" ng-click="createComment(answer)">{{ answer.comments.length ? 'CONTINUE discussion' : 'COMMENT' }}</button>
+    </div>
+  </div>
+</div>
+<div class="comments-container">
+  <div class="comment" ng-repeat="comment in answer.comments">
+    <div class="" ng-include="'/templates/comment/list-single.html'">
+
+    </div>
+  </div>
+</div>
