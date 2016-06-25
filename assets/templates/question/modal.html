@@ -8,9 +8,9 @@
 <div class="modal-content">
   <div class="inner">
     <h4>Please fill this fields to create question</h4>
-    <form ng-submit="createQuestion(question)" name="questionForm">
-      <input ng-model="question.name" type="text" placeholder="Name" name="name" class="cuprum input" required>
-      <textarea ng-model="question.content" placeholder="Content" name="content" class="cuprum input" required></textarea>
+    <form ng-submit="createQuestion(newQuestion)" name="questionForm">
+      <input ng-model="newQuestion.name" type="text" placeholder="Name" name="name" class="cuprum input" required>
+      <textarea ng-model="newQuestion.content" placeholder="Content" name="content" class="cuprum input" required></textarea>
       <input type="submit" value="Create" class="button-second cuprum" ng-disabled="questionForm.$invalid">
       <input type="hidden" name="_csrf" value="<%= _csrf %>" />
     </form>

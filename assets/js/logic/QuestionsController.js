@@ -29,6 +29,7 @@ WebModule.controller('QuestionsController', ['$scope', '$rootScope', '$http', '$
 		user: $sessionStorage.user
 	}, false, (err, questions) => {
 		$rootScope.questions = questions;
+		console.log(questions);
 		$rootScope.skip += $rootScope.limit;
 	});
 
@@ -86,6 +87,52 @@ WebModule.controller('QuestionsController', ['$scope', '$rootScope', '$http', '$
 		}
 	}
 
+	function addQuestion(question) {
+		if($rootScope.type === 'all' || $rootScope.type === 'my' && $rootScope.user.name === question.name) {
+			if($rootScope.sort === 'recent') {
+				$rootScope.questions.unshift(question);
+			}
+			else if($rootScope.sort === 'hot') {
+				if($rootScope.questions[$rootScope.questions.length-1].hot >= question.hot) {
+					// don't add
+				}
+				else if($rootScope.questions[0].hot <= question.hot) {
+					$rootScope.questions.unshift(question);
+				}
+				else {
+					for(let i=1; i<$rootScope.questions.length-1; i++) {
+						if($rootScope.questions[i].hot <= question.hot) {
+							$rootScope.questions.splice(i, 0, question);
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	function addAnswerQuestion(answer) {
+		$rootScope.questions.forEach((question) => {
+			if(question.id === answer.question) {
+				if(!question.answers) question.answers = [];
+				question.answers.push(answer);
+				return;
+			}
+		})
+	}
+
+	function addCommentQuestion(comment) {
+		$rootScope.questions.forEach((question) => {
+			question.answers.forEach((answer) => {
+				if(answer.id === comment.answer) {
+					if(!answer.comments) answer.comments = [];
+					answer.comments.push(answer);
+					return;
+				}
+			})
+		})
+	}
+
 	function getActivitiesSize() {
 		let width = $(window).width();
 		let size = 4;
@@ -112,9 +159,17 @@ WebModule.controller('QuestionsController', ['$scope', '$rootScope', '$http', '$
 
 	var channel = pusher.subscribe('questions');
 	channel.bind('create', function(data) {
-		if($rootScope === 'recent') {
-			$rootScope.questions.unshift(data.question);
-		}
+		let question = questionService.getQuestion(data.question.id, (err, question) => {
+			addQuestion(question);
+		});
+	});
+	channel.bind('answer', function(data) {
+		let answer = data.answer;
+		addAnswerQuestion(answer);
+	});
+	channel.bind('comment', function(data) {
+		let comment = data.comment;
+		addCommentQuestion(comment);
 	});
 
 	$scope.$on('$routeChangeStart', function(next, current) {

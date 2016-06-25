@@ -3,7 +3,7 @@ WebModule.controller('AuthController', ['$scope', '$rootScope', '$http', '$sessi
 	OAuth.initialize(OAUTH_KEY);
 	$rootScope.user = $sessionStorage.user;
 
-	if(!$scope.user) {
+	if(!$rootScope.user) {
 		$('#navbar .user-navbar').addClass('show');
 		$('#modal-blanket').fadeIn();
 	}

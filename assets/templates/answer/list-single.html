@@ -22,7 +22,7 @@
           <span class="vote-arrow down icon-down-dir" ng-click="voteAnswer(answer, '-')"></span>
         </div>
       </div>
-      <button type="button" class="button" name="createComment" ng-click="createComment(answer)">{{ answer.comments.length ? 'CONTINUE discussion' : 'COMMENT' }}</button>
+      <button type="button" class="button give-comment" name="createComment">{{ answer.comments.length ? 'CONTINUE discussion' : 'COMMENT' }}</button>
     </div>
   </div>
 </div>
@@ -31,5 +31,13 @@
     <div class="" ng-include="'/templates/comment/list-single.html'">
 
     </div>
+  </div>
+
+  <div class="form-comment-container">
+    <form class="form-comment form-slide hidden" name="commentForm" ng-submit="createComment(answer, newComment)">
+      <textarea ng-model="newComment.content" placeholder="Content" name="content" class="cuprum input" required></textarea>
+      <input type="submit" value="Comment" class="button cuprum" ng-disabled="commentForm.$invalid">
+      <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+    </form>
   </div>
 </div>

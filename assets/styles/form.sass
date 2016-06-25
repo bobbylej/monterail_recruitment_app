@@ -68,3 +68,26 @@ input.input, textarea.input
       position: absolute
       top: $radio_size/4
       left: $radio_size/4
+
+.form-slide
+  width: 100%
+  margin: 0
+  padding: 10px 20px
+  box-sizing: border-box
+  background-color: $content_bg
+  border-left: $question_border
+  border-bottom: $question_border
+
+  &.hidden
+    display: none
+
+  &.form-comment
+    margin-left: 90px
+    width: calc(100% - 90px)
+    border-top: $question_border
+
+  input, textarea
+    display: block
+    margin: 10px auto
+    width: 100%
+    box-sizing: border-box

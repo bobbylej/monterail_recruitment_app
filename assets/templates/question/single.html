@@ -28,8 +28,15 @@
           <span class="vote-arrow down icon-down-dir" ng-click="voteQuestion('-')"></span>
         </div>
       </div>
-      <button type="button" class="button" name="createAnswer" ng-click="createAnswer()">GIVE new answer</button>
+      <button type="button" class="button give-answer" name="createAnswer">GIVE new answer</button>
     </div>
+  </div>
+  <div class="form-answer-container">
+    <form class="form-answer form-slide hidden" name="answerForm" ng-submit="createAnswer(newAnswer)">
+      <textarea ng-model="newAnswer.content" placeholder="Content" name="content" class="cuprum input" required></textarea>
+      <input type="submit" value="Give answer" class="button cuprum" ng-disabled="answerForm.$invalid">
+      <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+    </form>
   </div>
 </div>
 <div class="answers-container">

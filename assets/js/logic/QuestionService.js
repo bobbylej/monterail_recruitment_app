@@ -299,70 +299,20 @@ WebModule.service('questionService', ['$rootScope', '$http', '$sessionStorage', 
 		return 0;
   }
 
-  function generateQuestions() {
-    let sampleQuestions = [];
-    let scopeItarator = 10;
-    for(let i=0; i<10; i++) {
-      createQuestion({
-        name: `Question ${i}`,
-        content: `${i}`,
-        user: $sessionStorage.user.name
-      }, (question) => {
-        let scopeItarator2 = 2;
-        for(let i=0; i<2; i++) {
-          createAnswer({
-            question: question.data.id,
-            content: `Answer ${i}`,
-            user: $sessionStorage.user.name
-          }, (answer) => {
-            let scopeItarator3 = 2;
-            for(let i=0; i<2; i++) {
-              createComment({
-                answer: answer.data.id,
-                content: `Comment ${i}`,
-                user: $sessionStorage.user.name
-              }, (comment) => {
-                scopeItarator3--;
-                if(!scopeItarator3) {
-                  scopeItarator2--;
-                  if(!scopeItarator2) {
-                    scopeItarator--;
-                    if(!scopeItarator) {
-                      searchQuestions();
-                    }
-                  }
-                }
-              })
-            }
-            scopeItarator2--;
-            if(!scopeItarator2) {
-              searchQuestions();
-            }
-          })
-        }
-      })
-    }
-  };
-
-  function destroyAll() {
-    $http.get('/question/destroyAll');
-  }
-
   return {
     getQuestion,
     searchQuestions,
     getTheHottestAnswer,
     countAllQuestions,
     countQuestionInfo,
+    countVotes,
     createQuestion,
     createAnswer,
     createComment,
     voteQuestion,
     voteAnswer,
     voteComment,
-    wasUserVote,
-    generateQuestions,
-    destroyAll
+    wasUserVote
   };
 
 }]);

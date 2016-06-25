@@ -42,12 +42,12 @@ module.exports = {
       name: question.user
     }).exec((err, user) => {
       if(err) console.log(err);
-
-      if(!user.activity) user.activity = 0;
-      user.activity++;
-      user.save();
+      if(user) {
+        if(!user.activity) user.activity = 0;
+        user.activity++;
+        user.save();
+      }
     })
-
 		PusherService.trigger('questions', 'create', {
 		  question
 		});

@@ -55,6 +55,14 @@
        user.save();
      })
 
+     PusherService.trigger('questions', 'answer', {
+       answer
+     });
+
+     PusherService.trigger(`question${answer.question}`, 'answer', {
+       answer
+     });
+
      cb();
    }
  };

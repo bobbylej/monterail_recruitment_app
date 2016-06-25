@@ -54,20 +54,26 @@ WebModule.controller('QuestionController', ['$scope', '$rootScope', '$http', '$s
 		});
 	}
 
-	$scope.createAnswer = () => {
+	$scope.createAnswer = (answer) => {
 		questionService.createAnswer({
 			question: $rootScope.question.id,
-			content: `Answer ${parseInt(Math.random()*20)}`,
+			content: answer.content,
 			user: $sessionStorage.user.name
 		})
+
+		$('.give-answer').fadeIn();
+		$('.form-slide.form-answer').slideUp();
 	}
 
-	$scope.createComment = (answer) => {
+	$scope.createComment = (answer, comment) => {
 		questionService.createComment({
 			answer: answer.id,
-			content: `Comment ${parseInt(Math.random()*20)}`,
+			content: comment.content,
 			user: $sessionStorage.user.name
 		})
+
+		$('.give-comment').fadeIn();
+		$('.form-slide.form-comment').slideUp();
 	}
 
 	function addVoteQuestion(vote) {
@@ -109,6 +115,24 @@ WebModule.controller('QuestionController', ['$scope', '$rootScope', '$http', '$s
 		})
 	}
 
+	function addAnswerQuestion(answer) {
+		if($rootScope.question.id === answer.question) {
+			if(!$rootScope.question.answers) question.answers = [];
+			$rootScope.question.answers.push(answer);
+			return;
+		}
+	}
+
+	function addCommentQuestion(comment) {
+		$rootScope.question.answers.forEach((answer) => {
+			if(answer.id === comment.answer) {
+				if(!answer.comments) answer.comments = [];
+				answer.comments.push(comment);
+				return;
+			}
+		})
+	}
+
 	var channel = pusher.subscribe(`question${$routeParams.id}`);
 	channel.bind('voteQuestion', function(data) {
 		addVoteQuestion(data.vote);
@@ -119,8 +143,30 @@ WebModule.controller('QuestionController', ['$scope', '$rootScope', '$http', '$s
 	channel.bind('voteComment', function(data) {
 		addVoteComment(data.vote);
 	});
+	channel.bind('answer', function(data) {
+		let answer = data.answer;
+		addAnswerQuestion(answer);
+	});
+	channel.bind('comment', function(data) {
+		console.log(data);
+		let comment = data.comment;
+		addCommentQuestion(comment);
+	});
 
 	$scope.$on('$routeChangeStart', function(next, current) {
 		pusher.unsubscribe(`question${$routeParams.id}`);
 	});
+
+	$('.give-answer').click(function() {
+		$(this).fadeOut();
+		$(this).parents('.question-container').find('.form-slide').slideDown();
+	})
+
+	$scope.$on('$includeContentLoaded', function(event) {
+		$('.give-comment').click(function() {
+			$(this).fadeOut();
+			$(this).parents('.answer').find('.form-slide').slideDown();
+		})
+	});
+
 }]);

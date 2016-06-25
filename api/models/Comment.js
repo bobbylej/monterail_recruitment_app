@@ -39,6 +39,10 @@
      }).exec((err, answer) => {
        if(err) console.log(err);
 
+       PusherService.trigger(`question${answer.question}`, 'comment', {
+   		  comment
+     	 });
+
        Question.findOne({
          id: answer.question
        }).exec((err, question) => {
@@ -60,6 +64,11 @@
        user.activity++;
        user.save();
      })
+
+     PusherService.trigger('questions', 'comment', {
+ 		  comment
+   	 });
+
 
      cb();
    }

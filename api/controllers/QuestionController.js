@@ -21,17 +21,13 @@ module.exports = {
 
 		if(user) {
 			criteria.where = {
-				and : [
-					{
-						or : [
-				      { name : {'contains': search} },
-				      { content : {'contains': search} },
-				      { user : {'contains': search} }
-				    ],
-					},
-					{ user: user }
-				]
-			};
+				or : [
+					{ name : {'contains': search} },
+					{ content : {'contains': search} },
+					{ user : {'contains': search} }
+				],
+				user: user
+			}
 		}
 		else {
 			criteria.where = {
@@ -53,7 +49,7 @@ module.exports = {
 			sort = 'createdAt';
 		}
 
-		Question.find(criteria).sort(sort + 'DESC').populate('user')
+		Question.find(criteria).sort(sort + ' DESC').populate('user')
 		.exec((err, questions) => {
 			if(err) return res.serverError(err);
 

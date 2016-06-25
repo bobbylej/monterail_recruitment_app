@@ -59,7 +59,6 @@ WebModule.controller('NavbarController', ['$scope', '$rootScope', '$http', '$ses
 
 	$scope.createQuestion = (question) => {
     $scope.closeModal();
-    console.log(question);
 		questionService.createQuestion({
 			name: question.name,
 			content: question.content,
@@ -113,15 +112,5 @@ WebModule.controller('NavbarController', ['$scope', '$rootScope', '$http', '$ses
       $(this).radio();
     });
 	});
-
-  /*
-  $('#navbar-arrow-back').click(() => {
-    $('#navbar .user-navbar').addClass('show');
-    $('#modal-blanket').fadeIn();
-  })
-  */
-
-  //questionService.generateQuestions();
-  //questionService.destroyAll();
 
 }]);
