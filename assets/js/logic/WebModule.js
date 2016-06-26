@@ -29,5 +29,5 @@ var pusher = new Pusher('f5d91269ef4e8b70abac', {
   encrypted: true
 });
 
-const DEFAULT_AVATAR = 'http://www.insoso.org/images/avatar.jpeg';
+const DEFAULT_AVATAR = '/images/avatar.png';
 const OAUTH_KEY = 'x9Rg0yXYXMDkXMQQBDq9Zmw5V08';

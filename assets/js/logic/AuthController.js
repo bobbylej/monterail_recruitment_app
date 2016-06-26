@@ -3,10 +3,15 @@ WebModule.controller('AuthController', ['$scope', '$rootScope', '$http', '$sessi
 	OAuth.initialize(OAUTH_KEY);
 	$rootScope.user = $sessionStorage.user;
 
-	if(!$rootScope.user) {
-		$('#navbar .user-navbar').addClass('show');
-		$('#modal-blanket').fadeIn();
-	}
+	setTimeout(
+		() => {
+			if(!$rootScope.user) {
+				$('#navbar .user-navbar').addClass('show');
+				$('#modal-blanket').fadeIn();
+			}
+		}, 1000
+	)
+
 
 	$scope.loginLocal = function () {
     $http.put('/user/login', {
@@ -20,11 +25,11 @@ WebModule.controller('AuthController', ['$scope', '$rootScope', '$http', '$sessi
     })
     .catch((response) => {
       if (response.status === 400 || 404) {
-				$scope.error = 'Ivalid login or password';
+				$scope.errorLogin = 'Ivalid login or password';
 				return;
       }
 
-			$scope.error = 'Error';
+			$scope.errorLogin = 'Error';
 			return;
     })
   };
@@ -34,7 +39,6 @@ WebModule.controller('AuthController', ['$scope', '$rootScope', '$http', '$sessi
 	    .done(function(result) {
 				result.me()
 			    .done(function (response) {
-						console.log(response);
 						var dataUser = {
 							uid: response.id,
 							name: response.name,
@@ -61,7 +65,7 @@ WebModule.controller('AuthController', ['$scope', '$rootScope', '$http', '$sessi
 								return;
 							}
 
-							$scope.error = 'Error';
+							$scope.errorLogin = 'Error';
 							return;
 						})
 			    })
@@ -70,7 +74,7 @@ WebModule.controller('AuthController', ['$scope', '$rootScope', '$http', '$sessi
 			    });
 	    })
 	    .fail(function (err) {
-	      $scope.error = err;
+	      $scope.errorLogin = err;
 		});
 	}
 
@@ -96,10 +100,10 @@ WebModule.controller('AuthController', ['$scope', '$rootScope', '$http', '$sessi
 		})
 		.catch(function onError(response) {
 			if (response.status == 409) {
-				$scope.error = 'That login has already been taken, please try again.';
+				$scope.errorSignup = 'That login has already been taken, please try again.';
 			}
 			else if (response.status == 500) {
-				$scope.error = response.data.originalError;
+				$scope.errorSignup = response.data.originalError;
 				return;
 			}
 

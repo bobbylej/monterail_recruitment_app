@@ -53,15 +53,15 @@
        if(!user.activity) user.activity = 0;
        user.activity++;
        user.save();
+
+       answer.user = user;
+       PusherService.trigger('questions', 'answer', {
+         answer
+       });
+       PusherService.trigger(`question${answer.question}`, 'answer', {
+         answer
+       });
      })
-
-     PusherService.trigger('questions', 'answer', {
-       answer
-     });
-
-     PusherService.trigger(`question${answer.question}`, 'answer', {
-       answer
-     });
 
      cb();
    }

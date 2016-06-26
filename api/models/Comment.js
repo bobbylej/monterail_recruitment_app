@@ -34,27 +34,6 @@
    },
 
    afterCreate(comment, cb) {
-     Answer.findOne({
-       id: comment.answer
-     }).exec((err, answer) => {
-       if(err) console.log(err);
-
-       PusherService.trigger(`question${answer.question}`, 'comment', {
-   		  comment
-     	 });
-
-       Question.findOne({
-         id: answer.question
-       }).exec((err, question) => {
-         if(err) console.log(err);
-
-         question.updatedAt = comment.updatedAt;
-         if(!question.hot) question.hot = 0;
-         question.hot++;
-         question.save();
-       })
-     })
-
      User.findOne({
        name: comment.user
      }).exec((err, user) => {
@@ -63,11 +42,33 @@
        if(!user.activity) user.activity = 0;
        user.activity++;
        user.save();
-     })
 
-     PusherService.trigger('questions', 'comment', {
- 		  comment
-   	 });
+       comment.user = user;
+       PusherService.trigger('questions', 'comment', {
+         comment
+       });
+
+       Answer.findOne({
+         id: comment.answer
+       }).exec((err, answer) => {
+         if(err) console.log(err);
+
+         PusherService.trigger(`question${answer.question}`, 'comment', {
+     		  comment
+       	 });
+
+         Question.findOne({
+           id: answer.question
+         }).exec((err, question) => {
+           if(err) console.log(err);
+
+           question.updatedAt = comment.updatedAt;
+           if(!question.hot) question.hot = 0;
+           question.hot++;
+           question.save();
+         })
+       })
+     });
 
 
      cb();

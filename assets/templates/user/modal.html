@@ -16,9 +16,7 @@
       <div class="main-info activity">
         <h4 class="meta">Activity level</h4>
         <div class="info activity-level {{ $root.userModal.activityLevel }}">
-          <span class="level icon"></span>
-          <span class="level icon"></span>
-          <span class="level icon"></span>
+          <span class="level icon {{ level <= $root.userModal.activityLevel ? 'active' : '' }}" ng-repeat="level in [1,2,3]"></span>
         </div>
       </div>
     </div>

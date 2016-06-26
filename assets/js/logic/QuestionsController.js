@@ -29,13 +29,11 @@ WebModule.controller('QuestionsController', ['$scope', '$rootScope', '$http', '$
 		user: $sessionStorage.user
 	}, false, (err, questions) => {
 		$rootScope.questions = questions;
-		console.log(questions);
 		$rootScope.skip += $rootScope.limit;
 	});
 
 	$scope.openQuestion = (question) => {
 		$rootScope.question = question;
-		console.log($rootScope.question);
 		window.location = `/#/question/${question.id}`;
 	}
 
@@ -48,7 +46,6 @@ WebModule.controller('QuestionsController', ['$scope', '$rootScope', '$http', '$
 			skip: $rootScope.skip,
 			user: $sessionStorage.user
 		}, false, (err, questions) => {
-			console.log(questions, $rootScope.skip);
 			$rootScope.questions = $rootScope.questions.concat(questions);
 			$rootScope.skip += $rootScope.limit;
 		});

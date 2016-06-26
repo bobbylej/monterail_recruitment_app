@@ -46,11 +46,13 @@ module.exports = {
         if(!user.activity) user.activity = 0;
         user.activity++;
         user.save();
+
+        question.user = user;
+    		PusherService.trigger('questions', 'create', {
+    		  question
+    		});
       }
     })
-		PusherService.trigger('questions', 'create', {
-		  question
-		});
 
     cb();
   }

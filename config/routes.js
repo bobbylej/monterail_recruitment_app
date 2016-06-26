@@ -36,11 +36,6 @@ module.exports.routes = {
     view: 'homepage'
   },
 
-  'PUT /user/logout' : {
-    controller: 'User',
-    action: 'logout'
-  },
-
   'GET /question/get/:id' : {
     controller: 'Question',
     action: 'getOne'

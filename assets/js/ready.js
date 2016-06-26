@@ -8,13 +8,11 @@ $(document).ready(function() {
   $('#modal-blanket').click(() => {
     $('#navbar .user-navbar').removeClass('show');
     $('#modal-user').removeClass('show');
+    $('#modal-question').removeClass('show');
     $('#modal-blanket').fadeOut();
   })
-  /*
-  $('input[type="text"]').each(function() {
-    $(this).inputLabel();
-  });
-  */
+
+  // config the navbar on scroll
   var prev = $(window).scrollTop();
   $(window).on('scroll', function(event) {
     let now = $(this).scrollTop();

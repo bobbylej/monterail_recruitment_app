@@ -31,7 +31,7 @@ WebModule.controller('UserController', ['$scope', '$rootScope', '$http', '$sessi
 			$rootScope.userModal.info = info;
 			$rootScope.userModal.questions = questions;
 			$rootScope.userModal.hottestAnswer = questionService.getTheHottestAnswer(questions);
-			console.log($rootScope.userModal.hottestAnswer);
+			$rootScope.userModal.activityLevel = userService.countActivity($rootScope.userModal);
 		})
   }
 

@@ -148,7 +148,6 @@ WebModule.controller('QuestionController', ['$scope', '$rootScope', '$http', '$s
 		addAnswerQuestion(answer);
 	});
 	channel.bind('comment', function(data) {
-		console.log(data);
 		let comment = data.comment;
 		addCommentQuestion(comment);
 	});

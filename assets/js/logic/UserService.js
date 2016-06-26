@@ -39,11 +39,29 @@ WebModule.service('userService', ['$rootScope', '$http', '$sessionStorage', 'que
     })
   }
 
+  function countActivity(user) {
+    if(user.activity) {
+      if(user.activity > 0) {
+        return 1;
+      }
+      else if(user.activity > 20) {
+        return 2;
+      }
+      else if(user.activity > 50) {
+        return 3;
+      }
+    }
+    else {
+      return 0;
+    }
+  }
+
   return {
     openUserModal,
     closeUserModal,
     getUsersInSamePeriod,
-    getUserQuestions
+    getUserQuestions,
+    countActivity
   }
 
 }]);
