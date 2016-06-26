@@ -25,8 +25,8 @@ This app is a forum with questions, answers and comments to answers. The bottom 
 - show single question with answers and comments, 
 - allows to vote at questions, answers and comments
 - show info about selected user
-- are responsive
-- are SPA
+- is responsive
+- is SPA
 
 I also add some extra things to this app:
 - login, login by facebook and signup user (modal will show at start if user is not logged),
