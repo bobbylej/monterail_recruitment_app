@@ -133,6 +133,7 @@ WebModule.controller('QuestionController', ['$scope', '$rootScope', '$http', '$s
 		})
 	}
 
+	// Pusher events
 	var channel = pusher.subscribe(`question${$routeParams.id}`);
 	channel.bind('voteQuestion', function(data) {
 		addVoteQuestion(data.vote);
@@ -156,12 +157,15 @@ WebModule.controller('QuestionController', ['$scope', '$rootScope', '$http', '$s
 		pusher.unsubscribe(`question${$routeParams.id}`);
 	});
 
+	// jQuery events
+	// show answer form
 	$('.give-answer').click(function() {
 		$(this).fadeOut();
 		$(this).parents('.question-container').find('.form-slide').slideDown();
 	})
 
 	$scope.$on('$includeContentLoaded', function(event) {
+		// show comment form
 		$('.give-comment').click(function() {
 			$(this).fadeOut();
 			$(this).parents('.answer').find('.form-slide').slideDown();

@@ -14,7 +14,7 @@ WebModule.controller('AuthController', ['$scope', '$rootScope', '$http', '$sessi
 
 
 	$scope.loginLocal = function () {
-    $http.put('/user/login', {
+    $http.post('/user/login', {
 			name: $scope.loginForm.name,
 			password: $scope.loginForm.password
 		})
@@ -46,7 +46,7 @@ WebModule.controller('AuthController', ['$scope', '$rootScope', '$http', '$sessi
 							provider: 'facebook'
 						};
 
-						$http.put('/user/loginFacebook', {
+						$http.post('/user/loginFacebook', {
 							uid: dataUser.uid
 						})
 						.then(function onSuccess(response) {
@@ -80,7 +80,7 @@ WebModule.controller('AuthController', ['$scope', '$rootScope', '$http', '$sessi
 
 	$scope.logout = function() {
 		if($sessionStorage.user) {
-			$http.put(`/user/logout`, {
+			$http.post(`/user/logout`, {
 				name: $sessionStorage.user.name
 			});
 		}

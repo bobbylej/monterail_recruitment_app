@@ -1,6 +1,8 @@
 WebModule.controller('NavbarController', ['$scope', '$rootScope', '$http', '$sessionStorage', 'questionService', 'dateService',
   function($scope, $rootScope, $http, $sessionStorage, questionService, dateService) {
 
+  timeDifference();
+
   $scope.changeQuestionsType = (type) => {
     $rootScope.type = type;
     $rootScope.skip = 0;
@@ -73,8 +75,7 @@ WebModule.controller('NavbarController', ['$scope', '$rootScope', '$http', '$ses
           $rootScope.openUserModal($rootScope.user);
         }
         else {
-          $('#navbar .user-navbar').addClass('show');
-          $('#modal-blanket').fadeIn();
+          $scope.openLoginModal();
         }
         break;
       case 'question':
@@ -84,8 +85,13 @@ WebModule.controller('NavbarController', ['$scope', '$rootScope', '$http', '$ses
   }
 
   $scope.openQuestionModal = () => {
-    $('#modal-question').addClass('show');
-    $('#modal-blanket').fadeIn();
+    if($sessionStorage.user) {
+      $('#modal-question').addClass('show');
+      $('#modal-blanket').fadeIn();
+    }
+    else {
+      $scope.openLoginModal();
+    }
   }
 
   $scope.closeModal = () => {
@@ -93,7 +99,12 @@ WebModule.controller('NavbarController', ['$scope', '$rootScope', '$http', '$ses
     $('#modal-blanket').fadeOut();
   }
 
-	$scope.timeDifference = () => {
+  $scope.openLoginModal = () => {
+    $('#navbar .user-navbar').addClass('show');
+    $('#modal-blanket').fadeIn();
+  }
+
+	function timeDifference() {
     if($rootScope.question) {
       let date = $rootScope.question.updatedAt;
       $scope.$apply(() => {
@@ -101,11 +112,9 @@ WebModule.controller('NavbarController', ['$scope', '$rootScope', '$http', '$ses
       })
     }
     setTimeout(() => {
-      $scope.timeDifference();
+      timeDifference();
     }, 3000);
 	}
-
-  $scope.timeDifference();
 
   $scope.$on('$includeContentLoaded', function(event) {
     $('input[type="radio"]').each(function() {
