@@ -70,15 +70,18 @@ WebModule.service('questionService', ['$rootScope', '$http', '$sessionStorage', 
     let theHottestAnswer;
     let hottestValue = 0;
     questions.forEach((question) => {
-      question.answers.forEach((answer) => {
-        answer.info = countAnswerInfo(answer);
-        let answerValue = answer.info.peers.length+answer.info.discussion+voteDifference(answer);
-        if(answerValue > hottestValue) {
-          theHottestAnswer = answer;
-          theHottestAnswer.question = question;
-          hottestValue = answerValue;
-        }
-      })
+      if(question.answers) {
+        question.answers.forEach((answer) => {
+          answer.info = countAnswerInfo(answer);
+          let answerValue = answer.info.peers.length + answer.info.discussion + voteDifference(answer);
+          if(answerValue > hottestValue) {
+            theHottestAnswer = answer;
+            question.answers = undefined;
+            theHottestAnswer.question = question;
+            hottestValue = answerValue;
+          }
+        })
+      }
     })
     return theHottestAnswer;
   }

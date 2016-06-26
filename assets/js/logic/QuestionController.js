@@ -118,19 +118,29 @@ WebModule.controller('QuestionController', ['$scope', '$rootScope', '$http', '$s
 	function addAnswerQuestion(answer) {
 		if($rootScope.question.id === answer.question) {
 			if(!$rootScope.question.answers) question.answers = [];
+			answer.votes = {
+				upvotes: [],
+				downvotes: []
+			}
 			$rootScope.question.answers.push(answer);
 			return;
 		}
+		$rootScope.question.info = questionService.countQuestionInfo($rootScope.question);
 	}
 
 	function addCommentQuestion(comment) {
 		$rootScope.question.answers.forEach((answer) => {
 			if(answer.id === comment.answer) {
 				if(!answer.comments) answer.comments = [];
+				comment.votes = {
+					upvotes: [],
+					downvotes: []
+				}
 				answer.comments.push(comment);
 				return;
 			}
 		})
+		$rootScope.question.info = questionService.countQuestionInfo($rootScope.question);
 	}
 
 	// Pusher events
