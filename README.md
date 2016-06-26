@@ -22,7 +22,7 @@ This is test task for Monterail.
 
 This app is a forum with questions, answers and comments to answers. The bottom level was to create app which:
 - show list of questions with the possibility of sorting, filtering and searching
-- show single question with answers and comments, 
+- show single question with answers and comments,
 - allows to vote at questions, answers and comments
 - show info about selected user
 - is responsive
@@ -36,11 +36,11 @@ I also add some extra things to this app:
 
 ##Environment
 To create server I use Sails.js. This is Node.js framework which have MVC architecture and provides connection with DB.
-I use Sails.js as my JSON API and save all data in MongoDB, instead of mock data on front-end, because Sails provides my simply REST API. 
+I use Sails.js as my JSON API and save all data in MongoDB, instead of mock data on front-end, because Sails provides my simply REST API.
 
 If you want to check back-end logic or models you need to open ***/api*** folder. There you have ***/api/controllers***, ***/api/models*** or ***/api/services***
 
-This task was test for front-end developer, so I guess that you want to know where are whole front-end staff. Everything is in folder ***/assets***. 
+This task was test for front-end developer, so I guess that you want to know where are whole front-end staff. Everything is in folder ***/assets***.
 
 I use AngularJS to create logic on front-end and make app SPA. Files with Angular are in ***/assets/js/logic***.
 
@@ -56,4 +56,3 @@ To save logged user in session I used ngStorage lib.
 
 Files with html templates you will find in ***/assets/templates*** and styles in ***/assets/styles***, where I used SASS preprocessor.
 Sails.js provides me thanks to Grunt compile all SASS and ES6 files to CSS and js.
-
