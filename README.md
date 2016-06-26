@@ -34,3 +34,26 @@ I also add some extra things to this app:
 - using pusher.js to build realtime app
 - create own JSON API with Sails.js
 
+##Environment
+To create server I use Sails.js. This is Node.js framework which have MVC architecture and provides connection with DB.
+I use Sails.js as my JSON API and save all data in MongoDB, instead of mock data on front-end, because Sails provides my simply REST API. 
+
+If you want to check back-end logic or models you need to open ***/api*** folder. There you have ***/api/controllers***, ***/api/models*** or ***/api/services***
+
+This task was test for front-end developer, so I guess that you want to know where are whole front-end staff. Everything is in folder ***/assets***. 
+
+I use AngularJS to create logic on front-end and make app SPA. Files with Angular are in ***/assets/js/logic***.
+
+I create one Module for whole website and few Controllers for difference views. For example, to controll questions list I have ***QuestionsController.js*** or for user modal ***UserController.js***.
+
+I create also Services for questions and user, where I have functions repeated in few controllers.
+
+Thanks to services and rootScope I solved problem with connection between controllers, for example when user change sorting settings in navbar it should have effect on question list, so then I run function in ***QuestionService.js*** that change ***$rootScope.questions*** variable.
+
+To create SPA I also used Angular with ngRoute lib.
+
+To save logged user in session I used ngStorage lib.
+
+Files with html templates you will find in ***/assets/templates*** and styles in ***/assets/styles***, where I used SASS preprocessor.
+Sails.js provides me thanks to Grunt compile all SASS and ES6 files to CSS and js.
+
