@@ -146,6 +146,7 @@ module.exports = {
 		Question.findOne({ id: id }).populate('user')
 		.exec((err, question) => {
 			if(err) return res.serverError(err);
+			if(!question) return res.notFound('Question not found');
 
 			VoteQuestion.find({
 				question: question.id
