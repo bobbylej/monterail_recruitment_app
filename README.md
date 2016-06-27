@@ -34,6 +34,18 @@ I also add some extra things to this app:
 - using pusher.js to build realtime app
 - create own JSON API with Sails.js
 
+##How to interpret
+###Task 3: Connect modal to users
+- Activiy level: amount of questions, answers, comments and votes added by user
+- Users in the same period: users registered 15 days before and after selected user
+
+###Task 5: Add pagination and sorting
+- Sorting by hot: hot = amount of answers + comments + upvotes - downvotes
+- My shelf: questions created by logged user
+
+###Task 6: Add search
+- Search questions which name, content or username contain search expression
+
 ##Environment
 To create server I use Sails.js. This is Node.js framework which have MVC architecture and provides connection with DB.
 I use Sails.js as my JSON API and save all data in MongoDB, instead of mock data on front-end, because Sails provides my simply REST API.
