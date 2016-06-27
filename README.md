@@ -36,7 +36,7 @@ I also add some extra things to this app:
 
 ##How to interpret
 ###Task 3: Connect modal to users
-- Activiy level: amount of questions, answers, comments and votes added by user
+- Activity level: amount of questions, answers, comments and votes added by user
 - Users in the same period: users registered 15 days before and after selected user
 
 ###Task 5: Add pagination and sorting
@@ -67,4 +67,4 @@ To create SPA I also used Angular with ngRoute lib.
 To save logged user in session I used ngStorage lib.
 
 Files with html templates you will find in ***/assets/templates*** and styles in ***/assets/styles***, where I used SASS preprocessor.
-Sails.js provides me thanks to Grunt compile all SASS and ES6 files to CSS and js.
+Sails.js provides me thanks to Grunt compile all SASS and ES6 files to CSS and ES5. (Unfortunately I need to concat all js files with ES6 to one file ***all.js*** and convert manually to ES5, because Grunt give me errors and app didn't work on browsers without ES6 support)
