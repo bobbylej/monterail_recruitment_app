@@ -35,9 +35,10 @@ var jsFilesToInject = [
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
-  'js/plugins.js',
-  'js/logic/WebModule.js',
-  'js/**/*.js'
+  //'js/plugins.js',
+  //'js/logic/WebModule.js',
+  //'js/**/*.js'
+  'js/all.js'
 ];
 
 
